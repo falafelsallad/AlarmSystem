@@ -1,0 +1,1 @@
+ALTER TABLE central_unit ADD COLUMN name VARCHAR(250);
