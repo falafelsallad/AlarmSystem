@@ -9,6 +9,7 @@ import summerprojects2025.alarmsystem.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+    //TODO: Hashing passwords
 
     public final CustomerRepository customerRepository;
 
