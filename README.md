@@ -1,4 +1,5 @@
 # This is the docker-compose file to bind the images pulled from docker hub. Images are pushed to docker hub repository.
+# There are two images, one contains the database and the other contians the application.
 
 version: '3.8'
 services:
