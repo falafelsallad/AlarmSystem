@@ -1,3 +1,5 @@
+# This is the docker-compose file to bind the images pulled from docker hub. Images are pushed to docker hub repository.
+
 version: '3.8'
 services:
   db:
