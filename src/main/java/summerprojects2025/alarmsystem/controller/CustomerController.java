@@ -24,6 +24,6 @@ public class CustomerController {
     @PostMapping("/store")
     public Customer saveCustomer(@RequestBody Customer customer) {
         return customerService.create(customer);
-
     }
+
 }

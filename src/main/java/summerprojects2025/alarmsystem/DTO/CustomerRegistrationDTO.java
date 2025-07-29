@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRegistrationDTO {
+public class CustomerRegistrationDTO {
     private String name;
     private String email;
     private String phonenumber;
