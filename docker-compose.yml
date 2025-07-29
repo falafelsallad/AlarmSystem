@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   db:
     image: postgres:17
@@ -8,8 +9,6 @@ services:
       POSTGRES_DB: AlarmSystemDB
     ports:
       - "5234:5432"
-      # bytte ordning på portarna, tidigare: 5432:5234
-
   AlarmSystem:
     image: alarmsystemimg:v1
     ports:
@@ -17,8 +16,6 @@ services:
     depends_on:
       - db
     environment:
-      # Det blev error då databasen inuti containern lyssnar på 5432 som standard.
-      # Då blir det ingen connection om den försöker koppla mot port 5234.
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/AlarmSystemDB
 
 

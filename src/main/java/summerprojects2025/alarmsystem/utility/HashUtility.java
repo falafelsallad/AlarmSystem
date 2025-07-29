@@ -1,20 +1,18 @@
 package summerprojects2025.alarmsystem.utility;
 
+import com.google.common.hash.Hashing;
+
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HexFormat;
 
-public class HashUtility {
+public final class HashUtility {
 
-    //computing sha5256 string and returns hexString.
-    public static String sha256(String input) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
-            return HexFormat.of().formatHex(hash);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+    public HashUtility() {
+
+    }
+
+    public static String SHA256(String orgString) {
+        return Hashing.sha256()
+                .hashString(orgString, StandardCharsets.UTF_8)
+                .toString();
     }
 }

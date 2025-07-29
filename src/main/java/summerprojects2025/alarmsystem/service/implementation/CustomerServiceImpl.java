@@ -1,11 +1,11 @@
 package summerprojects2025.alarmsystem.service.implementation;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import summerprojects2025.alarmsystem.model.Customer;
 import summerprojects2025.alarmsystem.repository.CustomerRepository;
 import summerprojects2025.alarmsystem.service.CustomerService;
+import summerprojects2025.alarmsystem.utility.HashUtility;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -17,9 +17,15 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    public String hashPasswordSHA256(String rawPassword) {
+        return HashUtility.SHA256(rawPassword);
+    }
+
     @Override
     public Customer create(Customer customer){
         return customerRepository.save(customer);
     }
+
+
 
 }
