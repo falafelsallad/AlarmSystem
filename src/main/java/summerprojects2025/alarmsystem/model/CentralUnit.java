@@ -13,6 +13,7 @@ import java.util.List;
 public class CentralUnit {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String serial;
 
     // Status for the Central Unit, perhaps on/off/ready

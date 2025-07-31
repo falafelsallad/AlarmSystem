@@ -18,6 +18,7 @@ import org.checkerframework.checker.regex.qual.Regex;
 @AllArgsConstructor
 public class CustomerRegistrationDTO {
 
+    //TODO: email verification proxy
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -39,7 +40,7 @@ public class CustomerRegistrationDTO {
     private String address;
 
     @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at leaast 6 characters")
+    @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
 }
 
