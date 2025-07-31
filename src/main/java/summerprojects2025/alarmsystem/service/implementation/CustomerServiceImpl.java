@@ -27,6 +27,15 @@ public class CustomerServiceImpl implements CustomerService {
     // Hashing password and setting all values from DTO to Customer object.
     @Override
     public Customer register(CustomerRegistrationDTO dto) {
+
+        if (customerRepository.existsByEmail(dto.getEmail())) {
+            throw new RuntimeException("A customer with this email already exists");
+        }
+
+        if (customerRepository.existsBySsn(dto.getPersonalNumber())) {
+            throw new RuntimeException("A customer with this personal number already exists");
+        }
+
         Customer customer = new Customer();
         customer.setName(dto.getName());
         customer.setEmail(dto.getEmail());
@@ -34,6 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setSsn(dto.getPersonalNumber());
         customer.setAddress(dto.getAddress());
         customer.setPasswordHash(hashPasswordSHA256(dto.getPassword()));
+
         return customerRepository.save(customer);
     }
 
