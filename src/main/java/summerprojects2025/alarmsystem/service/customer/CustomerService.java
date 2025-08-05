@@ -1,4 +1,4 @@
-package summerprojects2025.alarmsystem.service;
+package summerprojects2025.alarmsystem.service.customer;
 
 import summerprojects2025.alarmsystem.DTO.CustomerRegistrationDTO;
 import summerprojects2025.alarmsystem.model.Customer;

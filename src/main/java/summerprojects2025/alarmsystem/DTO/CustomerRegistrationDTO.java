@@ -29,7 +29,7 @@ public class CustomerRegistrationDTO {
 
     @NotBlank(message = "Phone number is required")
     @Pattern(regexp = "^(?:\\+46|0)7[02369]\\d{7}$", message = "Phone number must be Swedish")
-    private String phonenumber;
+    private String phone;
 
     @NotBlank(message = "Valid Swedish personal number required")
     @Pattern(regexp = "^(\\d{2}){1,2}(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])[-+]?\\d{4}$",

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,12 +22,12 @@ public class Customer {
     private String phoneNumber;
 
     @Column(name = "passwordhash")
-    private String passwordHash; // Bcrypt password get 60 characters long no matter the original password length.
+    private String passwordHash;
 
     @OneToMany(mappedBy = "customer")
-    private List<CentralUnit> centralUnits;
+    private Set<CentralUnit> centralUnits;
 
     @OneToMany(mappedBy = "customer")
-    private List<User> users;
+    private Set<User> users;
 
 }

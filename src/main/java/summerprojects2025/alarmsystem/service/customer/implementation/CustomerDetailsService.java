@@ -1,4 +1,4 @@
-package summerprojects2025.alarmsystem.service;
+package summerprojects2025.alarmsystem.service.customer.implementation;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

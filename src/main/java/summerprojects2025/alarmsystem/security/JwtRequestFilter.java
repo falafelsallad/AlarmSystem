@@ -17,6 +17,9 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
+    /// intercepts incoming HTTP requests and extracts Jwt tokens from Auth headers
+    /// and validates the tokens and sets up auth context
+
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
 

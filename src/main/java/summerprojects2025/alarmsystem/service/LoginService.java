@@ -14,8 +14,9 @@ public class LoginService {
         this.customerRepository = customerRepository;
     }
 
+    // .equalsIgnoreCase for password hash, SHA256 doesn't use uppercase
     public Customer login(String email, String rawPassword) {
-        Customer customer = customerRepository.findByEmail(email);
+        Customer customer = customerRepository.findByEmail(email.toLowerCase());
         if (customer == null) throw new RuntimeException("Customer not found");
         if (!HashUtility.SHA256(rawPassword).equalsIgnoreCase(customer.getPasswordHash())) {
             throw new RuntimeException("Invalid credentials");

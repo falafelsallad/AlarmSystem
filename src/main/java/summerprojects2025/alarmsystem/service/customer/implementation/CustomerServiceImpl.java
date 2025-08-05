@@ -1,19 +1,20 @@
-package summerprojects2025.alarmsystem.service.implementation;
+package summerprojects2025.alarmsystem.service.customer.implementation;
 
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.stereotype.Service;
 import summerprojects2025.alarmsystem.DTO.CustomerRegistrationDTO;
 import summerprojects2025.alarmsystem.model.Customer;
 import summerprojects2025.alarmsystem.repository.CustomerRepository;
-import summerprojects2025.alarmsystem.service.CustomerService;
+import summerprojects2025.alarmsystem.service.customer.CustomerService;
 import summerprojects2025.alarmsystem.utility.HashUtility;
+
+import java.util.Optional;
 
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
     //TODO: Hashing passwords
 
-    public final CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -39,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = new Customer();
         customer.setName(dto.getName());
         customer.setEmail(dto.getEmail());
-        customer.setPhoneNumber(dto.getPhonenumber());
+        customer.setPhoneNumber(dto.getPhone());
         customer.setSsn(dto.getPersonalNumber());
         customer.setAddress(dto.getAddress());
         customer.setPasswordHash(hashPasswordSHA256(dto.getPassword()));
@@ -54,6 +55,9 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.save(customer);
     }
 
+    public Optional<Customer> findById(Long id) {
+        return customerRepository.findById(id);
+    }
 
 
 

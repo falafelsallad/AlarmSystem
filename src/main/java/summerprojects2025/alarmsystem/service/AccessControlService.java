@@ -23,17 +23,17 @@ public class AccessControlService {
         this.userRepo = userRepo;
     }
 
-    public boolean verifyAccess(AccessRequest req) {
-        Optional<CentralUnit> optionalCu = centralUnitRepo.findBySerial(req.getSerial());
-        if (optionalCu.isEmpty()) return false;
-
-        CentralUnit cu = optionalCu.get();
-
-        return switch (req.getType().toLowerCase()) {
-            case "tag" -> tagRepo.existsByTagIdHashAndCentralUnit(req.getCredentials(), cu);
-            case "pin" -> userRepo.existsByPinAndCentralUnit(req.getCredentials(), cu);
-            default -> false;
-        };
-
-    }
+//    public boolean verifyAccess(AccessRequest req) {
+//        Optional<CentralUnit> optionalCu = centralUnitRepo.findBySerial(req.getSerial());
+//        if (optionalCu.isEmpty()) return false;
+//
+//        CentralUnit cu = optionalCu.get();
+//
+//        return switch (req.getType().toLowerCase()) {
+//            case "tag" -> tagRepo.existsByTagIdHashAndCentralUnit(req.getCredentials(), cu);
+//            case "pin" -> userRepo.existsByPinAndCentralUnit(req.getCredentials(), cu);
+//            default -> false;
+//        };
+//
+//    }
 }

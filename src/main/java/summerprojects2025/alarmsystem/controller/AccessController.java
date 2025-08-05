@@ -18,11 +18,11 @@ public class AccessController {
     }
 
     //Using ResponseEntity represent the HTTP response
-    @PostMapping
-    public ResponseEntity<String> verify(@RequestBody AccessRequest request) {
-        boolean allowed = accessControlService.verifyAccess(request);
-        return allowed ? ResponseEntity.ok("Verified. Access granted") : ResponseEntity.status(403).body("Not Verified. Access Denied");
-    }
+//    @PostMapping
+//    public ResponseEntity<String> verify(@RequestBody AccessRequest request) {
+//        boolean allowed = accessControlService.verifyAccess(request);
+//        return allowed ? ResponseEntity.ok("Verified. Access granted") : ResponseEntity.status(403).body("Not Verified. Access Denied");
+//    }
 
     //testing ResponseEntity
     @GetMapping("/hello")

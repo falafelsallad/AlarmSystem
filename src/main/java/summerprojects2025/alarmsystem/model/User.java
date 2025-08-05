@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,10 +17,15 @@ public class User {
     private String name;
     private String pinHash;
 
+    //change to central unit
     @ManyToOne
     private Customer customer;
 
     @ManyToMany
-    private List<CentralUnit> centralUnits;
+    private Set<CentralUnit> centralUnits;
+
+    // One tag per profile
+    @OneToOne(mappedBy = "user")
+    private Tag tag;
 
 }

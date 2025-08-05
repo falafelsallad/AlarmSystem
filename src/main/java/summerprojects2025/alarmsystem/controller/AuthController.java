@@ -3,10 +3,11 @@ package summerprojects2025.alarmsystem.controller;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import summerprojects2025.alarmsystem.DTO.AuthRequest;
 import summerprojects2025.alarmsystem.DTO.AuthResponse;
 import summerprojects2025.alarmsystem.DTO.CustomerRegistrationDTO;
 import summerprojects2025.alarmsystem.model.Customer;
-import summerprojects2025.alarmsystem.service.CustomerService;
+import summerprojects2025.alarmsystem.service.customer.CustomerService;
 import summerprojects2025.alarmsystem.service.LoginService;
 import summerprojects2025.alarmsystem.utility.JwtUtil;
 
@@ -15,6 +16,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
+    /// Authentication flow:
+    /// Customer submits credentials and is issued a Jwt token
+    /// Client includes this token in Authorisation header for future requests
+    /// JwtRequestFilter validates the token on each request
+    /// and if it's valid Spring Security allows to access protected resources.
 
 
     private final LoginService loginService;
@@ -26,11 +33,18 @@ public class AuthController {
         this.customerService = customerService;
         this.jwtUtil = jwtUtil;
     }
+    /// AuthRequest class (DTO) has two variables: String email, String password
+    /// AuthResponse class (DTO) has two variables: String token, String email
+    /// TODO: Map out endpoints for retrieving data with authentication. Add filtering logic in services.
+    /// {
+    ///     "email": "alice@example.com",
+    ///     "password": "abc123hash"
+    /// }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password){
+    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest){
         try {
-            Customer customer =  loginService.login(email, password);
+            Customer customer =  loginService.login(authRequest.getEmail(), authRequest.getPassword());
             String token = jwtUtil.generateToken(customer.getEmail());
             return ResponseEntity.ok(new AuthResponse(token, customer.getEmail()));
         } catch (RuntimeException e) {
@@ -38,11 +52,12 @@ public class AuthController {
         }
     }
 
+    //Triggers validation for customer registration DTO
     @PostMapping("/register")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerRegistrationDTO registrationDTO){
         try {
             Customer registeredCustomer = customerService.register(registrationDTO);
-            return ResponseEntity.ok("Registration successful");
+            return ResponseEntity.ok("Registration successful" + "\nWelcome " + registeredCustomer.getName() + "!");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

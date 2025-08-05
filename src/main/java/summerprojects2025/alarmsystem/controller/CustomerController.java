@@ -3,7 +3,7 @@ package summerprojects2025.alarmsystem.controller;
 
 import org.springframework.web.bind.annotation.*;
 import summerprojects2025.alarmsystem.model.Customer;
-import summerprojects2025.alarmsystem.service.implementation.CustomerServiceImpl;
+import summerprojects2025.alarmsystem.service.customer.implementation.CustomerServiceImpl;
 
 @RestController
 @RequestMapping("/customers")
