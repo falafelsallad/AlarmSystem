@@ -4,7 +4,9 @@ package summerprojects2025.alarmsystem.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.web.embedded.netty.NettyWebServer;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,10 +30,12 @@ public class CentralUnit {
 
     // can be connected to more than one profiles,
     @ManyToMany(mappedBy = "centralUnits")
-    private List<User> users;
+    private Set<Tag> tags = new HashSet<>();
 
     @ManyToMany(mappedBy = "centralUnits")
-    private Set<Tag> tags;
+    private Set<User> users = new HashSet<>();
+
+
 
 
 

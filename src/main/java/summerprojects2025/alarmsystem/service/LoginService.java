@@ -5,6 +5,8 @@ import summerprojects2025.alarmsystem.model.Customer;
 import summerprojects2025.alarmsystem.repository.CustomerRepository;
 import summerprojects2025.alarmsystem.utility.HashUtility;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class LoginService {
 
@@ -16,8 +18,8 @@ public class LoginService {
 
     // .equalsIgnoreCase for password hash, SHA256 doesn't use uppercase
     public Customer login(String email, String rawPassword) {
-        Customer customer = customerRepository.findByEmail(email.toLowerCase());
-        if (customer == null) throw new RuntimeException("Customer not found");
+        Customer customer = customerRepository.findByEmail(email.toLowerCase())
+                .orElseThrow(() -> new NoSuchElementException("Customer not found"));
         if (!HashUtility.SHA256(rawPassword).equalsIgnoreCase(customer.getPasswordHash())) {
             throw new RuntimeException("Invalid credentials");
         }

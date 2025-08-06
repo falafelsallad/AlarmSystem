@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import summerprojects2025.alarmsystem.repository.CustomerRepository;
 import summerprojects2025.alarmsystem.model.Customer;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 
 @Service
 public class CustomerDetailsService implements UserDetailsService {
@@ -23,9 +24,8 @@ public class CustomerDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Customer customer =  customerRepository.findByEmail(email);
-
-        if (customer == null) throw new UsernameNotFoundException("Customer not found: " + email);
+        Customer customer =  customerRepository.findByEmail(email)
+                .orElseThrow(() ->  new NoSuchElementException("Customer not found " + email));
 
         return new User(
                 customer.getEmail(),

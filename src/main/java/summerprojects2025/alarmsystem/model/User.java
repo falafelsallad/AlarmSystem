@@ -22,10 +22,10 @@ public class User {
     private Customer customer;
 
     @ManyToMany
+    @JoinTable(
+            name = "app_user_central_unit",
+            joinColumns = @JoinColumn(name = "app_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "central_unit_id")
+    )
     private Set<CentralUnit> centralUnits;
-
-    // One tag per profile
-    @OneToOne(mappedBy = "user")
-    private Tag tag;
-
 }
