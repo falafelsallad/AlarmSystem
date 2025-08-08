@@ -13,15 +13,19 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Table(name = "central_unit")
 public class CentralUnit {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "serial_number")
     private String serial;
 
     // Status for the Central Unit, perhaps on/off/ready
     private boolean status;
+
+    private String name;
 
     @ManyToOne
     private Customer customer;

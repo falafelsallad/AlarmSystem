@@ -1,4 +1,4 @@
-package summerprojects2025.alarmsystem.DTO;
+package summerprojects2025.alarmsystem.DTO.login;
 
 
 import lombok.Getter;

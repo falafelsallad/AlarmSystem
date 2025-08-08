@@ -3,14 +3,13 @@ package summerprojects2025.alarmsystem.service.tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import summerprojects2025.alarmsystem.DTO.TagRegistrationDTO;
+import summerprojects2025.alarmsystem.DTO.registrationDTOs.TagRegistrationDTO;
 import summerprojects2025.alarmsystem.model.CentralUnit;
 import summerprojects2025.alarmsystem.model.Tag;
 import summerprojects2025.alarmsystem.repository.TagRepository;
 import summerprojects2025.alarmsystem.service.centralUnit.CentralUnitService;
 import summerprojects2025.alarmsystem.utility.HashUtility;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 

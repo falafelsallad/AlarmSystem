@@ -1,7 +1,7 @@
 package summerprojects2025.alarmsystem.service.customer.implementation;
 
 import org.springframework.stereotype.Service;
-import summerprojects2025.alarmsystem.DTO.CustomerRegistrationDTO;
+import summerprojects2025.alarmsystem.DTO.registrationDTOs.CustomerRegistrationDTO;
 import summerprojects2025.alarmsystem.model.Customer;
 import summerprojects2025.alarmsystem.repository.CustomerRepository;
 import summerprojects2025.alarmsystem.service.customer.CustomerService;
@@ -57,6 +57,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     public Optional<Customer> findById(Long id) {
         return customerRepository.findById(id);
+    }
+
+    public Optional<Customer> findByEmail(String email) {
+        return customerRepository.findByEmail(email);
     }
 
 

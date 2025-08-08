@@ -1,7 +1,7 @@
 package summerprojects2025.alarmsystem.service.user;
 
 import org.springframework.stereotype.Service;
-import summerprojects2025.alarmsystem.DTO.UserRegistrationDTO;
+import summerprojects2025.alarmsystem.DTO.registrationDTOs.UserRegistrationDTO;
 import summerprojects2025.alarmsystem.model.User;
 import summerprojects2025.alarmsystem.repository.UserRepository;
 
@@ -27,4 +27,5 @@ public class UserService {
     public User createUserForCustomer(Long customerId, UserRegistrationDTO userDTO) {
         return null;
     }
+
 }

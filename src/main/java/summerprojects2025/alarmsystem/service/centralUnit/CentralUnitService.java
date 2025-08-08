@@ -1,18 +1,18 @@
 package summerprojects2025.alarmsystem.service.centralUnit;
 
 import lombok.RequiredArgsConstructor;
+import org.checkerframework.checker.units.qual.C;
 import org.springframework.stereotype.Service;
-import summerprojects2025.alarmsystem.DTO.CentralUnitRegistrationDTO;
+import summerprojects2025.alarmsystem.DTO.registrationDTOs.CentralUnitRegistrationDTO;
 import summerprojects2025.alarmsystem.model.CentralUnit;
 import summerprojects2025.alarmsystem.model.Customer;
-import summerprojects2025.alarmsystem.model.Tag;
 import summerprojects2025.alarmsystem.model.User;
 import summerprojects2025.alarmsystem.repository.CentralUnitRepository;
 import summerprojects2025.alarmsystem.service.customer.implementation.CustomerServiceImpl;
 import summerprojects2025.alarmsystem.service.user.UserService;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -27,10 +27,15 @@ public class CentralUnitService {
     public CentralUnit registerCentralUnitToCustomer(Long customerId, CentralUnitRegistrationDTO centralUnitRegDTO) {
         Customer customer = customerService.findById(customerId)
                 .orElseThrow(() -> new NoSuchElementException("Customer not found"));
-        CentralUnit centralUnit = new CentralUnit();
+
+        CentralUnit centralUnit = centralUnitRepository.findBySerial(centralUnitRegDTO.getSerial())
+                .orElseGet(CentralUnit::new);
+
+        //TODO: figure out to  set serial numbers that already exist in the system, not completely new ones.
+
         centralUnit.setSerial(centralUnitRegDTO.getSerial());
-        //TODO: CHANGE TO BOOLEAN
         centralUnit.setStatus(true);
+        centralUnit.setName(centralUnitRegDTO.getName());
         centralUnit.setCustomer(customer);
 
         return centralUnitRepository.save(centralUnit);
@@ -42,7 +47,7 @@ public class CentralUnitService {
         User user = userService.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("User by this ID not found"));
 
-        // if user doesn't have any central units, create new list
+        // if a user doesn't have any central units, create a new list
         if (user.getCentralUnits() == null) {
             user.setCentralUnits(new HashSet<>());
         }
@@ -59,5 +64,16 @@ public class CentralUnitService {
         return centralUnitRepository.findById(id);
     }
 
+    public List<CentralUnit> findAllByCustomerId(Long customerId) {
+        return centralUnitRepository.findCentralUnitByCustomer_Id(customerId)
+                .orElseThrow(()-> new NoSuchElementException("Central Unit(s) not found"));
+    }
 
+    public List<CentralUnit> findAll() {
+        return centralUnitRepository.findAll();
+    }
+
+    public List<CentralUnit> findAllUnOccupiedCentralUnits() {
+        return centralUnitRepository.findByCustomerIsNull();
+    }
 }

@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         //public endpoints
-                        .requestMatchers("/api/auth/login", "/api/auth/register", "api/auth/refresh-token").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh-token").permitAll()
                         //protected endpoints
                         .anyRequest().authenticated()
                 )
@@ -45,4 +45,5 @@ public class SecurityConfig {
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
 }

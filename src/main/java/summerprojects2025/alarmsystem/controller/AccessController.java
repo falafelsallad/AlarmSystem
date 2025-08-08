@@ -1,5 +1,6 @@
 package summerprojects2025.alarmsystem.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +10,10 @@ import summerprojects2025.alarmsystem.service.AccessControlService;
 
 @RestController
 @RequestMapping("/access")
+@RequiredArgsConstructor
 public class AccessController {
 
     private final AccessControlService accessControlService;
-
-    public AccessController(AccessControlService accessControlService) {
-        this.accessControlService = accessControlService;
-    }
 
     //Using ResponseEntity represent the HTTP response
 //    @PostMapping

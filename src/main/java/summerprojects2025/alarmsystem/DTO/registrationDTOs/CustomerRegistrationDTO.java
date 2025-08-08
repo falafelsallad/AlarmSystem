@@ -1,4 +1,4 @@
-package summerprojects2025.alarmsystem.DTO;
+package summerprojects2025.alarmsystem.DTO.registrationDTOs;
 
 
 import jakarta.validation.constraints.Email;
@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.checkerframework.checker.regex.qual.Regex;
 
 
 @Getter

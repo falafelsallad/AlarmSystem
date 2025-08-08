@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import summerprojects2025.alarmsystem.DTO.UserRegistrationDTO;
+import summerprojects2025.alarmsystem.DTO.registrationDTOs.UserRegistrationDTO;
 import summerprojects2025.alarmsystem.model.User;
 import summerprojects2025.alarmsystem.service.user.UserService;
 
