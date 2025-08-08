@@ -31,7 +31,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private Set<User> users;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private Set<Role> roles = new HashSet<>();
 
 }

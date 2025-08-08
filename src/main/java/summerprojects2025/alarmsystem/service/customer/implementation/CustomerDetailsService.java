@@ -29,13 +29,14 @@ public class CustomerDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Customer customer =  customerRepository.findByEmail(email)
                 .orElseThrow(() ->  new NoSuchElementException("Customer not found " + email));
-        List<GrantedAuthority> authorities = customer.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
+//        List<GrantedAuthority> authorities = customer.getRoles().stream()
+//                .map(role -> new SimpleGrantedAuthority(role.getName()))
+//                .collect(Collectors.toList());
+//        return new User(customer.getEmail(), customer.getPasswordHash(), authorities);
         return new User(
                 customer.getEmail(),
                 customer.getPasswordHash(),
-                authorities
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_CUSTOMER"))
         );
     }
 }

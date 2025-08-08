@@ -23,7 +23,6 @@ public class AuthController {
     /// JwtRequestFilter validates the token on each request
     /// and if it's valid Spring Security allows to access protected resources.
 
-
     private final LoginService loginService;
     private final CustomerService customerService;
     private final JwtUtil jwtUtil;
