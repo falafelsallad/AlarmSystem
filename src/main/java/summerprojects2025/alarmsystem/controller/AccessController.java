@@ -15,7 +15,7 @@ public class AccessController {
 
     private final AccessControlService accessControlService;
 
-    //Using ResponseEntity represent the HTTP response
+//    Using ResponseEntity represent the HTTP response
 //    @PostMapping
 //    public ResponseEntity<String> verify(@RequestBody AccessRequest request) {
 //        boolean allowed = accessControlService.verifyAccess(request);

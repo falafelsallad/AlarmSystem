@@ -20,7 +20,7 @@ public class LoginService {
     public Customer login(String email, String rawPassword) {
         Customer customer = customerRepository.findByEmail(email.toLowerCase())
                 .orElseThrow(() -> new NoSuchElementException("Customer not found"));
-        if (!HashUtility.SHA256(rawPassword).equalsIgnoreCase(customer.getPasswordHash())) {
+        if (!HashUtility.SHA256(rawPassword).equals(customer.getPasswordHash())) {
             throw new RuntimeException("Invalid credentials");
         }
         return customer;

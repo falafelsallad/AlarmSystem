@@ -62,6 +62,11 @@ public class AuthController {
         }
     }
 
+    @GetMapping("/test")
+    public ResponseEntity<String> testEndpoint(){
+        return ResponseEntity.ok("Auth  controller is accessable");
+    }
+
     @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(@RequestHeader("Authorization") String authHeader) {
         String oldToken = authHeader.substring(7); //remove "Bearer " prefix

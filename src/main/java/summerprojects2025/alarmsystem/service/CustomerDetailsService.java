@@ -1,6 +1,5 @@
-package summerprojects2025.alarmsystem.service.customer.implementation;
+package summerprojects2025.alarmsystem.service;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,9 +9,7 @@ import org.springframework.stereotype.Service;
 import summerprojects2025.alarmsystem.repository.CustomerRepository;
 import summerprojects2025.alarmsystem.model.Customer;
 import java.util.Collections;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 public class CustomerDetailsService implements UserDetailsService {

@@ -32,6 +32,11 @@ public class Customer {
     private Set<User> users;
 
 //    @ManyToMany(fetch = FetchType.EAGER)
+//        @JoinTable(
+//                name = "customer_role",
+//                joinColumns = @JoinColumn(name = "customer_id"),
+//                inverseJoinColumns = @JoinColumn(name = "role_id")
+//        )
 //    private Set<Role> roles = new HashSet<>();
 
 }

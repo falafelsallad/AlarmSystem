@@ -15,4 +15,5 @@ public final class HashUtility {
                 .hashString(orgString, StandardCharsets.UTF_8)
                 .toString();
     }
+
 }

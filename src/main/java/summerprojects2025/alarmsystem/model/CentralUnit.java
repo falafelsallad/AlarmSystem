@@ -23,7 +23,7 @@ public class CentralUnit {
     private String serial;
 
     // Status for the Central Unit, perhaps on/off/ready
-    private boolean status;
+    private Boolean status;
 
     private String name;
 

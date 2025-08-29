@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: alarmsystem_password
       POSTGRES_DB: AlarmSystemDB
     ports:
-      - "5234:5432"
+      - "5233:5432"
   AlarmSystem:
     image: falafelsallad/alarmsystemimg:v1
     ports:

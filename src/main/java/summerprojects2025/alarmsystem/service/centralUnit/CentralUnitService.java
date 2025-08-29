@@ -29,11 +29,15 @@ public class CentralUnitService {
                 .orElseThrow(() -> new NoSuchElementException("Customer not found"));
 
         CentralUnit centralUnit = centralUnitRepository.findBySerial(centralUnitRegDTO.getSerial())
-                .orElseGet(CentralUnit::new);
+                .orElseThrow(() -> new NoSuchElementException("Central unit with serial " + centralUnitRegDTO.getSerial() + " deos not exist in inventory"));
 
-        //TODO: figure out to  set serial numbers that already exist in the system, not completely new ones.
 
-        centralUnit.setSerial(centralUnitRegDTO.getSerial());
+        // Check if the central unit is already assigned to another customer
+        if (centralUnit.getCustomer() != null && !centralUnit.getCustomer().getId().equals(customerId)) {
+            throw new IllegalStateException("Central unit with serial " + centralUnitRegDTO.getSerial()
+                    + " is already assigned to another customer");
+        }
+
         centralUnit.setStatus(true);
         centralUnit.setName(centralUnitRegDTO.getName());
         centralUnit.setCustomer(customer);
@@ -41,13 +45,13 @@ public class CentralUnitService {
         return centralUnitRepository.save(centralUnit);
     }
 
-    public CentralUnit addUserToCentralUnit(Long centralUnitId, Long userId) {
+    public CentralUnit addNewUserToCentralUnit(Long centralUnitId, String name) {
         CentralUnit centralUnit = centralUnitRepository.findById(centralUnitId)
                 .orElseThrow(() -> new NoSuchElementException("Central unit by this ID not found"));
-        User user = userService.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("User by this ID not found"));
 
-        // if a user doesn't have any central units, create a new list
+        User user = new User();
+        user.setName(name);
+
         if (user.getCentralUnits() == null) {
             user.setCentralUnits(new HashSet<>());
         }

@@ -18,7 +18,9 @@ public class UserController {
     public ResponseEntity<User> createUser(
             @PathVariable Long customerId,
             @RequestBody UserRegistrationDTO userDTO) {
+
         User user = userService.createUserForCustomer(customerId, userDTO);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
