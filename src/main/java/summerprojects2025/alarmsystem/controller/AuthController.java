@@ -67,17 +67,4 @@ public class AuthController {
         return ResponseEntity.ok("Auth  controller is accessable");
     }
 
-    @PostMapping("/refresh-token")
-    public ResponseEntity<?> refreshToken(@RequestHeader("Authorization") String authHeader) {
-        String oldToken = authHeader.substring(7); //remove "Bearer " prefix
-        if (jwtUtil.isTokenExpired(oldToken)) {
-            String email = jwtUtil.extractEmail(oldToken);
-            String newToken = jwtUtil.generateToken(email);
-            return ResponseEntity.ok(Map.of("token", newToken));
-        } else {
-            return ResponseEntity.badRequest().body("Token is still valid");
-        }
-    }
-
-
 }

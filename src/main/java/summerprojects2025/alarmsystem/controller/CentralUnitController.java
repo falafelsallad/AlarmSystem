@@ -44,7 +44,7 @@ public class CentralUnitController {
     // POST, Registration of a new User to a central unit
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/user/register")
-    public ResponseEntity<CentralUnit> addUserToCentralUnit(
+    public ResponseEntity<CentralUnit> addUserNewToCentralUnit(
             @RequestBody AddNewUserCentralUnitDTO addNewUserCentralUnitDTO) throws AccessDeniedException {
 
         securityService.checkCentralUnitOwnerShip(addNewUserCentralUnitDTO.getCentralUnitId());
@@ -54,6 +54,7 @@ public class CentralUnitController {
     }
 
     // Gets all Central Units by the customer
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<CentralUnit>> getCentralUnitsOwnedByCustomer(@PathVariable Long customerId) throws AccessDeniedException {
 
