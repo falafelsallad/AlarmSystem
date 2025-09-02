@@ -91,7 +91,7 @@ public class CentralUnitController {
                         userDTO.setPinhash(user.getPinHash());
                         userDTOMap.put(user.getName(), userDTO);
                     });
-                    dto.setUserDTOMap(userDTOMap);
+                    dto.setUsers(userDTOMap);
                     return dto;
                 })
                 .collect(Collectors.toList());

@@ -7,7 +7,7 @@ import java.util.Map;
 @Data
 public class CentralUnitWithUserDTO {
     private String name;
-    private Map<String, UserDTO> userDTOMap;
+    private Map<String, UserDTO> users;
 //    private Map<String, TagDTO> tagDTOMap;
 
 }
