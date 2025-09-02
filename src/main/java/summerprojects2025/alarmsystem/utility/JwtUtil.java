@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.hibernate.sql.ast.tree.from.CorrelatedTableGroup;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -65,9 +66,10 @@ public class JwtUtil {
         }
     }
 
-
-
-
-
+    public String extractEmailFromSecurityContext() {
+        return org.springframework.security.core.context.SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
+    }
 }
 
