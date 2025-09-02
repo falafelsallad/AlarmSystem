@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         //public endpoints
-                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh-token", "/api/central-units/register", "/access/hello").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh-token", "/api/central-units/register", "/access/hello", "/api/central-units/all", "/api/central-units/unoccupied").permitAll()
                         //protected endpoints
                         .anyRequest().authenticated()
                 )
