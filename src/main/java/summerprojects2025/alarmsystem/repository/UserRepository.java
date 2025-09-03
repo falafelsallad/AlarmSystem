@@ -9,8 +9,11 @@ import summerprojects2025.alarmsystem.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    boolean existsByPinHashAndCentralUnits(String credentials, CentralUnit cu);
 
 //    @Query("SELECT u FROM User u JOIN u.centralUnits cu WHERE cu = :centralUnit AND u.pinHash = :pin")
 //    boolean existsByPinAndCentralUnit(@Param("pin") String pin, @Param("centralUnit") CentralUnit cu);
+
+
 
 }

@@ -18,6 +18,8 @@ public class User {
     @Column(name = "pinHash")
     private String pinHash;
 
+    //TODO: Lägg till avatar en siffra
+
     @ManyToOne
     private Customer customer;
 

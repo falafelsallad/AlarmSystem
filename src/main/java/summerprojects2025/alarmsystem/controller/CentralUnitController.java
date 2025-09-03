@@ -81,6 +81,7 @@ public class CentralUnitController {
                 .map(unit -> {
                     CentralUnitWithUserDTO dto = new CentralUnitWithUserDTO();
                     dto.setName(unit.getName());
+                    // TODO: central unit id
 
                     // create user map
                     Map<String, UserDTO> userDTOMap = new HashMap<>();

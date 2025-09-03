@@ -22,7 +22,7 @@ public class CentralUnit {
     @Column(name = "serial_number")
     private String serial;
 
-    // Status for the Central Unit, perhaps on/off/ready
+    // Status for the Central Unit, perhaps on/off
     private Boolean status;
 
     private String name;

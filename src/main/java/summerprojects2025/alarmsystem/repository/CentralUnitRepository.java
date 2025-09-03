@@ -16,4 +16,7 @@ public interface CentralUnitRepository extends JpaRepository <CentralUnit, Long>
     Optional<List<CentralUnit>> findCentralUnitByCustomer_Id(Long customerId);
 
     List<CentralUnit> findByCustomerIsNull();
+
+    boolean existsBySerial(String serial);
+
 }

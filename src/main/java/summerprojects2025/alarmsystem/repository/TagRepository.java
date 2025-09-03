@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface TagRepository extends JpaRepository <Tag, Long> {
     Optional<Tag> findByTagIdHash(String tagIdHash);
-//    boolean existsByTagIdHashAndCentralUnit(String tagIdHash, CentralUnit centralUnit);
+    boolean existsByTagIdHashAndCentralUnits(String tagIdHash, CentralUnit centralUnit);
 }
 
 
