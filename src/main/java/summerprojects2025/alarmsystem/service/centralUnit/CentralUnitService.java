@@ -45,12 +45,13 @@ public class CentralUnitService {
         return centralUnitRepository.save(centralUnit);
     }
 
-    public CentralUnit addNewUserToCentralUnit(Long centralUnitId, String name) {
+    public CentralUnit addNewUserToCentralUnit(Long centralUnitId, String name, Integer avatar) {
         CentralUnit centralUnit = centralUnitRepository.findById(centralUnitId)
                 .orElseThrow(() -> new NoSuchElementException("Central unit by this ID not found"));
 
         User user = new User();
         user.setName(name);
+        user.setAvatar(avatar);
 
         if (user.getCentralUnits() == null) {
             user.setCentralUnits(new HashSet<>());

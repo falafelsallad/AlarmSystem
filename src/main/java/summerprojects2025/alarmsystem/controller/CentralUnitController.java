@@ -52,7 +52,7 @@ public class CentralUnitController {
 
         securityService.checkCentralUnitOwnerShip(addNewUserCentralUnitDTO.getCentralUnitId());
 
-        CentralUnit updatedCentralUnit = centralUnitService.addNewUserToCentralUnit(addNewUserCentralUnitDTO.getCentralUnitId(), addNewUserCentralUnitDTO.getName());
+        CentralUnit updatedCentralUnit = centralUnitService.addNewUserToCentralUnit(addNewUserCentralUnitDTO.getCentralUnitId(), addNewUserCentralUnitDTO.getName(), addNewUserCentralUnitDTO.getAvatar());
         return ResponseEntity.ok(updatedCentralUnit);
     }
 
@@ -73,26 +73,29 @@ public class CentralUnitController {
         Customer customer = customerServiceImpl.findByEmail(email)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found"));
 
-        //geet central units for this customer
+        //get central units for this customer
         List<CentralUnit> centralUnits = centralUnitService.findAllByCustomerId(customer.getId());
 
         // Map to DTOs
         List <CentralUnitWithUserDTO> centralUnitWithUserDTOs = centralUnits.stream()
                 .map(unit -> {
                     CentralUnitWithUserDTO dto = new CentralUnitWithUserDTO();
+                    dto.setId(unit.getId());
                     dto.setName(unit.getName());
-                    // TODO: central unit id
+                    dto.setStatus(unit.getStatus());
 
                     // create user map
-                    Map<String, UserDTO> userDTOMap = new HashMap<>();
-                    unit.getUsers().forEach(user -> {
-                        UserDTO userDTO = new UserDTO();
-                        userDTO.setName(user.getName());
-//                        userDTO.setPassword(userDTO.getPassword());
-                        userDTO.setPinhash(user.getPinHash());
-                        userDTOMap.put(user.getName(), userDTO);
-                    });
-                    dto.setUsers(userDTOMap);
+                    List<UserDTO> userDTOList =  unit.getUsers().stream()
+                            .map(user -> {
+                                UserDTO userDTO = new UserDTO();
+                                userDTO.setId(user.getId());
+                                userDTO.setName(user.getName());
+                                userDTO.setAvatar(user.getAvatar());
+                                return userDTO;
+                            })
+                            .collect(Collectors.toList());
+
+                    dto.setUsers(userDTOList);
                     return dto;
                 })
                 .collect(Collectors.toList());

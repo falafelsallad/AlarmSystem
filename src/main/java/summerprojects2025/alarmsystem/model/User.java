@@ -18,7 +18,7 @@ public class User {
     @Column(name = "pinHash")
     private String pinHash;
 
-    //TODO: Lägg till avatar en siffra
+    private Integer avatar;
 
     @ManyToOne
     private Customer customer;
